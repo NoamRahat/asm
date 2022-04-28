@@ -24,9 +24,8 @@ countCol:
 	vecLoop:
 		mov dx, 0		;row counter (N times)
 		colLoop:
-			;bx = bp + cx
 			mov bx, bp
-			add bx, cx
+			add bx, cx	;bx = bp + cx
 			mov ax, 0
 			mov al, mat2[bx]	;ax = mat2[bp][cx]
 			imul mat1[si]	;ax = mat2[bp][cx]*mat1[si]
