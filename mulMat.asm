@@ -1,3 +1,5 @@
+;; N*N MATRICES MULTIPLT ASM ALGORITHM
+
 .model small
 .stack 100h
 	N EQU 3
@@ -16,7 +18,7 @@ START:
 	
 	mov cx, 0		;countes in withc column are we in
 countCol:
-		;multiply matrix by vector let BP be thee voctor index and SI to be the matrix index.
+		;multiply mat2 by vector. let BP be the voctor index and SI to be the matrix index.
 		mov bp, 0		;vecLoop counter (N times)
 		mov si, 0		;matrix index[0:N*N-1]
 	vecLoop:
