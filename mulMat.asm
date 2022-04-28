@@ -16,7 +16,7 @@ START:
 	mov es, ax
 	
 	
-	mov cx, 0		;countes in withc column are we in
+	mov cx, 0	;countes in withc column are we in
 countCol:
 		;multiply mat2 by vector. let BP be the voctor index and SI to be the matrix index.
 		mov bp, 0		;vecLoop counter (N times)
