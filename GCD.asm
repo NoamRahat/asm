@@ -66,8 +66,8 @@ main:
 	call arrGCD
 	
 	
-	add al, 30h		;offset from the exepted digit to in ASCII
-	mov ah,0Fh		;writing to screen memory					
+	add al, 30h		;offset from the exepted digit to ASCII value
+	mov ah, 0Fh		;writing to screen memory					
 	mov es:[280h+98h], ax	;printing to the sreen 
 	
 	.exit
