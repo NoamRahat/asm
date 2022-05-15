@@ -6,7 +6,9 @@
 	result dw ?
 	input_arr dw 3024, 1234, 1244, 44, 12414
 	inputLen EQU 5
+	asciiVal db "0123456789ABCDEF" ;Auxiliary array for screen printing
 .code
+
 ;input: AX, BX
 ;output: swap(AX, BX)
 swap proc
@@ -51,6 +53,44 @@ finish:
 	ret
 arrGCD endp
 
+;input: AX
+;otput: print AX to screen
+printAX proc uses bx cx es
+	mov cx, 4	;will be used in the isolation procedure
+	;dealing with AH value, without changing AX register
+	mov bl, ah 
+	shr bl, cl			;isolating the 4 msb of AX by shifting 4 bits
+	mov bh, 0
+	mov bl, asciiVal[bx]		;offset to the hexa digit
+	mov bh, 0Fh			;writing to screen memory
+	mov es:[280h+96h], bx ;printing to the sreen
+
+	mov bl, ah 			;duplicate ax
+	shl bl, cl			;isolating the 4 next msb of AX by shifting 4 bits
+	shr bl, cl
+	mov bh, 0
+	mov bl, asciiVal[bx]		;offset to the hexa digit
+	mov bh, 0Fh			;writing to screen memory
+	mov es:[280h+98h], bx ;printing to the sreen
+
+	;AL - the same process
+	;dealing with AL value, without changing AX register
+	mov bl, al 			;duplicate ax
+	shr bl, cl			;isolating the next 4 msb of AX by shifting 4 bits
+	mov bh, 0
+	mov bl, asciiVal[bx]		;offset to the hexa digit
+	mov bh, 0Fh			;writing to screen memory
+	mov es:[280h+9Ah], bx ;printing to the sreen
+
+	mov bl, al 	;duplicate ax
+	shl bl, cl	;isolating the next 4 LSB of AX by shifting 4 bits
+	shr bl, cl
+	mov bh, 0
+	mov bl, asciiVal[bx]		;offset to the hexa digit
+	mov bh, 0Fh			;writing to screen memory					
+	mov es:[280h+9Ch], bx ;printing to the sreen
+	ret
+printAX endp
 
 main:
 	;setting data segment
@@ -62,13 +102,10 @@ main:
 	mov es, ax
 	
 	mov si, 0 ;init array index.
-	mov cx, inputLen
+	mov cx, inputLen ;init array length.
 	call arrGCD
 	
-	;print result to screen
-	add al, 30h		;offset from the exepted digit to ASCII value
-	mov ah, 0Fh		;writing to screen memory					
-	mov es:[280h+98h], ax	;printing to the sreen 
+	call printAX
 	
 	.exit
 end main
