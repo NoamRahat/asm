@@ -57,18 +57,15 @@ arrGCD endp
 print proc uses dx
     mov dx, ax
     ;add 48 so that it represents the ASCII value of digits
-    add dx,48
+    add dx, 48
     ;interrupt to print a character
-    mov ah,02h
+    mov ah, 02h
     int 21h
 ret
 print endp
 
 main:
 	.startup
-	;setting extra segment to screen memory
-	;mov ax, 0B800h
-	;mov es, ax
 	
 	mov si, 0 ;init array index.
 	mov cx, inputLen ;init array length.
