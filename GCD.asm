@@ -31,7 +31,7 @@ recGCD proc uses dx
 	; Next Call:
 	call recGCD
 stop:
-	mov result[0], ax
+	mov result, ax
 	ret
 recGCD endp
 
@@ -39,7 +39,7 @@ recGCD endp
 ;Output: AX = GCD(input_arr)
 arrGCD proc uses bx
 	mov ax, input_arr[si]
-	mov bx, result[0]
+	mov bx, result
 	add si, 2	;promote array index
 	call recGCD
 	;stopping condition: if CX = 0 then finish.
@@ -48,7 +48,7 @@ arrGCD proc uses bx
 	; Next Call:
 	call arrGCD
 finish:
-	mov ax, result[0]
+	mov ax, result
 	ret
 arrGCD endp
 
