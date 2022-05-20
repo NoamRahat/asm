@@ -13,6 +13,7 @@ swap proc
 	xor ax, bx
 	xor bx, ax
 	xor ax, bx
+	ret
 swap endp
 
 ;Input: AX, BX
