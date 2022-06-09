@@ -9,7 +9,7 @@ O_location dw 7D0h
 X_location dw 0h
 score db -1d
 out_msg db 'SCORE:',0Ah,0Dh,'$'
-last_scan_code db 0A0h
+last_scan_code db ?
 counter db 0
 .code
 change_C1_int proc uses cx si ax 
