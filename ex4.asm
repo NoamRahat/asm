@@ -1,6 +1,5 @@
-;Eviatar Cohen 205913858		
-;Noam Rahat 205918360
-;This function implement the game Snake
+;Made by Noam Rahat & Eviatar Cohen
+;This function implements a version "Snake" game 
 
 
 .model small
@@ -48,12 +47,12 @@ return_IVT endp
 
 set_flag proc
 	
-	cmp counter , 2d
+	cmp counter ,2d
 	jz flagUp
 	inc counter
 	jmp always
 flagUp:
-	mov counter, 0
+	mov counter,0
 always:
 
 	int 80h ;use the old interupt
