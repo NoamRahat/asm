@@ -1,5 +1,5 @@
 ;Made by Noam Rahat & Eviatar Cohen
-;This function implements a version "Snake" game 
+;This program implements a version "Snake" game 
 
 
 .model small
